@@ -3,15 +3,19 @@ package com.yrgo.dataaccess;
 import com.yrgo.domain.Action;
 import com.yrgo.domain.Call;
 import com.yrgo.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     private static final String DELETE_SQL = "DELETE FROM TBL_CUSTOMER WHERE CUSTOMER_ID=?";
@@ -26,10 +30,12 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     private JdbcTemplate template;
 
+    @Autowired
     public CustomerDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
     }
 
+    @PostConstruct
     private void createTables() {
         try {
             this.template.update("CREATE TABLE TBL_CUSTOMER (CUSTOMER_ID VARCHAR(255), COMPANYNAME VARCHAR(255), NOTES VARCHAR(255), EMAIL VARCHAR(255), TELEPHONE VARCHAR(255))");

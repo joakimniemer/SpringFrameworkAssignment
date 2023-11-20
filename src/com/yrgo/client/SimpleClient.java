@@ -19,11 +19,11 @@ import java.util.List;
 public class SimpleClient {
     public static void main(String[] args) {
 
-        ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("file:src/application.xml");
+        ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("file:src/application-annotation.xml");
 
-        CustomerManagementService customerService = container.getBean(CustomerManagementService.class);
-        CallHandlingService callService = container.getBean(CallHandlingService.class);
-        DiaryManagementService diaryService = container.getBean(DiaryManagementService.class);
+        CustomerManagementService customerService = container.getBean("customerManagementService", CustomerManagementService.class);
+        CallHandlingService callService = container.getBean("callHandlingService", CallHandlingService.class);
+        DiaryManagementService diaryService = container.getBean("diaryManagementService", DiaryManagementService.class);
 
         customerService.newCustomer(new Customer("CS03939", "Acme", "Good Customer"));
 
