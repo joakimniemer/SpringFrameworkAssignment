@@ -23,7 +23,7 @@ public class CustomerDaoJPAImpl implements CustomerDao {
     @Override
     public Customer getById(String customerId) throws RecordNotFoundException {
         try {
-            return (Customer) em.createQuery("select customer from Customer as customer where Customer.customerId=:customerId").setParameter("customerId", customerId).getSingleResult();
+            return (Customer) em.createQuery("select customer from Customer as customer where customer.customerId=:customerId").setParameter("customerId", customerId).getSingleResult();
         } catch (javax.persistence.NoResultException e) {
             throw new RecordNotFoundException();
         }
@@ -32,7 +32,7 @@ public class CustomerDaoJPAImpl implements CustomerDao {
 
     @Override
     public List<Customer> getByName(String name) throws RecordNotFoundException {
-        List<Customer> list = em.createQuery("select customer from Customer as customer where Customer.companyName=:name", Customer.class).setParameter("name", name).getResultList();
+        List<Customer> list = em.createQuery("select customer from Customer as customer where customer.companyName=:name", Customer.class).setParameter("name", name).getResultList();
         if (list.size() == 0){
             throw new RecordNotFoundException();
         }

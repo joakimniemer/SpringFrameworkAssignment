@@ -19,7 +19,7 @@ import java.util.List;
 public class SimpleClient {
     public static void main(String[] args) {
 
-        ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("file:src/application-annotation.xml");
+        ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("file:src/production-application.xml ");
 
         CustomerManagementService customerService = container.getBean("customerManagementService", CustomerManagementService.class);
         CallHandlingService callService = container.getBean("callHandlingService", CallHandlingService.class);
